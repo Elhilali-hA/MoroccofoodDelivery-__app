@@ -2,16 +2,16 @@ import models from '../models/index.js'
 import AppException from '../exceptions/AppException.js'
 
 
-class usersController {
+class repasController {
 
-    async getuser(req, res) {
+    async getonerepas(req, res) {
         
         try {
-            const users = await models.users.findById(req.params.id);
+            const repas = await models.repas.findById(req.params.id);
             res.status(202).json({
                 status: 'success',
                 data: {
-                    users,
+                    repas,
                 },
             });
         } catch (err) {
@@ -19,16 +19,16 @@ class usersController {
         }
     }
 
-    async getusers(req, res) {
+    async getrepas(req, res) {
         try {
             let filter = {}
            if (req.query.name) filter.name = req.query.name;
-           if (req.query.role) filter.role = req.query.role;
-            const users = await models.users.find();
+           if (req.query.price) filter.price = req.query.price;
+            const repas = await models.repas.find().populate('categorie');
             res.status(202).json({
                 status: 'success',
                 data: {
-                    users,
+                    repas,
                 },
             });
         } catch (err) {
@@ -36,13 +36,13 @@ class usersController {
         }
     }
 
-    async createadmin(req, res) {
+    async createrepas(req, res) {
         try {
-            const newusers = await models.users.create({ ...req.body, role:'admin' });
+            const newrepas = await models.repas.create();
             res.status(202).json({
                 status: 'success',
                 data: {
-                    users: newusers,
+                    repas: newrepas,
                 },
             });
         } catch (err) {
@@ -50,10 +50,10 @@ class usersController {
         }
     }
 
-    async updateusers(req, res) {
+    async updaterepas(req, res) {
 
         try {
-            const users = await models.users.findByIdAndUpdate(
+            const repas = await models.repas.findByIdAndUpdate(
                 req.params.id,
                 req.body, {
                     new: true,
@@ -64,7 +64,7 @@ class usersController {
             res.status(202).json({
                 status: 'success',
                 data: {
-                    users,
+                    repas,
                 },
             });
         } catch (err) {
@@ -72,14 +72,14 @@ class usersController {
         }
     }
 
-    async deleteusers(req, res) {
+    async deleterepas(req, res) {
         try {
-          const users = await models.users.findByIdAndDelete(req.params.id);
+          const repas = await models.repas.findByIdAndDelete(req.params.id);
     
                 res.status(202).json({
                     status: 'success',
                     data: {
-                        users,
+                        repas,
                     },
                 });
             } catch (err) {
@@ -92,4 +92,4 @@ class usersController {
 
 }
 
-export default new usersController();
+export default new repasController();

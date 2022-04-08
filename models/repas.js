@@ -15,6 +15,11 @@ const repasSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'repas',
     },
+    repas_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'repas',
+        required: [true],
+    },
     price:{
         type: Number,
         required: [true, 'user must have a email'],

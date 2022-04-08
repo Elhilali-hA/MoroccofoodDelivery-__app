@@ -28,6 +28,11 @@ const restaurantsSchema = new mongoose.Schema({
         type: String,
         required: [true, 'restaurant must have a adress'],
       },
+      city:{
+        type: String,
+        required: [true, 'restaurant must have a city'],
+
+      },
         created_at: {
             type: Date,
             default: Date.now(),
@@ -37,6 +42,16 @@ const restaurantsSchema = new mongoose.Schema({
        },
 
 })
+
+hotelsSchema.virtual("repas", {
+  ref: "repas",
+  localField: "_id",
+  foreignField: "repas_id",
+}),
+
+
+restaurantsSchema.set("toObject", { virtuals: true })
+restaurantsSchema.set("toJSON", { virtuals: true })
 
 restaurantsSchema.plugin(arrayValidator);
 

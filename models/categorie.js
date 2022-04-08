@@ -26,4 +26,7 @@ categorieSchema.virtual('repas', {
     justOne: true
 });
 
+categorieSchema.set('toObject', { virtuals: true });
+categorieSchema.set('toJSON', { virtuals: true });
+
 export default categorieSchema;

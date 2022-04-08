@@ -24,7 +24,12 @@ class restaurantsController {
         try {
             let filter = {}
             if (req.query.title) filter.title = req.query.title;
-            const restaurants = await models.restaurants.find(filter);
+            if (req.query.city) filter.city = req.query.city;
+
+            const restaurants = await models.restaurants.find(filter).populate({
+                path: "repas",
+
+            });
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -49,6 +54,7 @@ class restaurantsController {
             title: req.body.title,
             description: req.body.description,
             type: req.body.type,
+            city: req.body.city,
             address: req.body.address,
             restaurantImage: images,
 
@@ -63,6 +69,7 @@ class restaurantsController {
                     description: result.description,
                     restaurantImage: result.restaurantImage,
                     type: result.type,
+                    city: result.city,
                     address: result.description
                 }
             });
