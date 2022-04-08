@@ -1,29 +1,31 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 
-const usersSchema = new mongoose.Schema({
+const chef_secteurSchema = new mongoose.Schema({
     name: {
       type: String,
-      required: [true, 'user must have a name'],
+      required: [true, 'chef_secteur must have a name'],
       unique: true,
     }, 
     email: {
       type: String,
-      required: [true, 'user must have a email'],
+      required: [true, 'chef_secteur must have a email'],
       unique: true,
     },
     password: {
       type: String,
-      required: [true, 'user must have a password'],
+      required: [true, 'chef_secteur must have a password'],
       minlength: 8,
       select: false,
+    },
+    secteur:{
+        type: String,
+        required: [true, 'ajouter un secteur'],
+        unique: true, 
     },
     role: {
       type: String,
       required: false,
-      default: 'client',
-      enum: ['client', 'admin', 'livreur', 'chef_secteur'],
-  
+      default: 'chef_secteur',
       },
       created_at: {
           type: Date,
@@ -40,11 +42,6 @@ const usersSchema = new mongoose.Schema({
       },
   });
 
-  usersSchema.pre('save', async function(next) {
-    if (this.isModified('password')) {
-        this.password = await bcrypt.hash(this.password, 12);
-        next();
-    }
-});
+  
 
-export default usersSchema;
+export default chef_secteurSchema;
