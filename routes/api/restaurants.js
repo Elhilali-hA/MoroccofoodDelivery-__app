@@ -9,7 +9,7 @@ export default {
       middlewares: [
         auth,
         function (req, res, next) {
-          authrization(req, res, next, 'admin');
+          authrization(req, res, next, 'admin', 'chef_secteur');
         },
       ],
     },
