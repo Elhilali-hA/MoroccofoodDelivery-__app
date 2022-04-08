@@ -1,9 +1,17 @@
 import restaurantController from '../../controller/restaurants-controller.js';
+import authrization from '../../middlewares/authorization.js'
+import auth from '../../middlewares/authentification.js'
 
 export default {
 
     group: {
       prefix: '/restaurants',
+      middlewares: [
+        auth,
+        function (req, res, next) {
+          authrization(req, res, next, 'admin');
+        },
+      ],
     },
     routes: [
       {
