@@ -1,4 +1,4 @@
-import repasController from '../../controller/repass-controller.js';
+import repasController from '../../controller/repas-controller.js';
 import authrization from '../../middlewares/authorization.js'
 import auth from '../../middlewares/authentification.js'
 
@@ -16,12 +16,12 @@ export default {
     routes: [
       {
         method: 'get',
-        path: '/',
+        path: '/:id',
         handler: repasController.getonerepas,
       },
       {
         method: 'get',
-        path: '/:id',
+        path: '/',
         handler: repasController.getrepas,
       },
       {

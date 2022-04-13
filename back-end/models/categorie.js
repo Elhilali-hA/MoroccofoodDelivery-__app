@@ -4,13 +4,11 @@ import mongoose from 'mongoose';
 const categorieSchema = new mongoose.Schema({
     name: {
       type: String,
-      required: [true, 'user must have a name'],
-      unique: true,
+      required: [true, 'categorie must have a name'],
     }, 
     description: {
       type: String,
-      required: [true, 'user must have a email'],
-      unique: true,
+      required: [true, 'categorie must have a description'],
     },
       created_at: {
           type: Date,
@@ -20,7 +18,7 @@ const categorieSchema = new mongoose.Schema({
   });
 
 categorieSchema.virtual('repas', {
-    ref: 'Repas',
+    ref: 'repas',
     localField: '_id',
     foreignField: 'categorie_id',
     justOne: true

@@ -1,11 +1,11 @@
-import restaurantController from '../../controller/restaurants-controller.js';
+import categorieController from '../../controller/categorie-controller.js';
 import authrization from '../../middlewares/authorization.js'
 import auth from '../../middlewares/authentification.js'
 
 export default {
 
     group: {
-      prefix: '/restaurants',
+      prefix: '/categorie',
       middlewares: [
         auth,
         function (req, res, next) {
@@ -17,27 +17,27 @@ export default {
       {
         method: 'get',
         path: '/',
-        handler: restaurantController.getrestaurants,
+        handler: categorieController.getonecategorie,
       },
       {
         method: 'get',
         path: '/:id',
-        handler: restaurantController.getrestaurant,
+        handler: categorieController.getcategories,
       },
       {
         method: 'post',
         path: '/',
-        handler: restaurantController.createrestaurants,
+        handler: categorieController.createcategorie,
       },
       {
         method: 'put',
         path: '/:id',
-        handler: restaurantController.updaterestaurants,
+        handler: categorieController.updatecategorie,
       },
       {
         method: 'delete',
         path: '/:id',
-        handler: restaurantController.deleterestaurants,
+        handler: categorieController.deletecategorie,
       },
     ],
   };

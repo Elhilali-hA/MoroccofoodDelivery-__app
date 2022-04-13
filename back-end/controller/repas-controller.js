@@ -7,7 +7,7 @@ class repasController {
     async getonerepas(req, res) {
         
         try {
-            const repas = await models.repas.findById(req.params.id);
+            const repas = await models.repas.findById(req.params.id).populate('categorie_id').populate('restaurant_id');;
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -24,7 +24,7 @@ class repasController {
             let filter = {}
            if (req.query.name) filter.name = req.query.name;
            if (req.query.price) filter.price = req.query.price;
-            const repas = await models.repas.find().populate('categorie');
+            const repas = await models.repas.find(filter).populate('categorie_id').populate('restaurant_id');
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -38,7 +38,7 @@ class repasController {
 
     async createrepas(req, res) {
         try {
-            const newrepas = await models.repas.create();
+            const newrepas = await models.repas.create(req.body);
             res.status(202).json({
                 status: 'success',
                 data: {

@@ -4,26 +4,26 @@ const repasSchema = new mongoose.Schema({
     name: {
       type: String,
       required: [true, 'reapas must have a name'],
-      unique: true,
+   
     }, 
     description: {
       type: String,
       required: [true, 'repas must have a email'],
-      unique: true,
+     
     },
     categorie_id:{
         type: mongoose.Schema.ObjectId,
-        ref: 'repas',
+        ref: 'categorie',
     },
-    repas_id: {
+    restaurant_id: {
         type: mongoose.Schema.ObjectId,
-        ref: 'repas',
+        ref: 'restaurants',
         required: [true],
     },
     price:{
         type: Number,
-        required: [true, 'user must have a email'],
-        unique: true,
+        required: [true, 'repas must have a email'],
+        
     },
       created_at: {
           type: Date,

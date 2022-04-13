@@ -43,10 +43,10 @@ const restaurantsSchema = new mongoose.Schema({
 
 })
 
-hotelsSchema.virtual("repas", {
+restaurantsSchema.virtual("repas", {
   ref: "repas",
   localField: "_id",
-  foreignField: "repas_id",
+  foreignField: "restaurant_id",
 }),
 
 

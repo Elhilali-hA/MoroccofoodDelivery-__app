@@ -7,7 +7,7 @@ class categorieController {
     async getonecategorie(req, res) {
         
         try {
-            const categorie = await models.categorie.findById(req.params.id);
+            const categorie = await models.categorie.findById(req.params.id).populate({ path : 'repas'});
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -23,7 +23,7 @@ class categorieController {
         try {
             let filter = {}
            if (req.query.name) filter.name = req.query.name;
-            const categorie = await models.categorie.find().populate('categorie');
+            const categorie = await models.categorie.find(filter).populate({ path : 'repas'});
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -37,11 +37,11 @@ class categorieController {
 
     async createcategorie(req, res) {
         try {
-            const newcategorie = await models.categorie.create();
+            const categorie = await models.categorie.create(req.body);
             res.status(202).json({
                 status: 'success',
                 data: {
-                    categorie: newcategorie,
+                    categories: categorie,
                 },
             });
         } catch (err) {

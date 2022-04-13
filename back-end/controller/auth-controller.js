@@ -15,7 +15,7 @@ class AuthController {
     if (!(await AuthService.isPasswordMatch(password, user.password)))
       throw new AppException('incorrect password', 403);
 
-    const payload = { id: user.id, email: user.email, name: user.name, role:user.role };
+    const payload = { id: user.id, email: user.email, name: user.name, role:user.role};
     const token = await AuthService.generateToken(payload);
 
     res.send(token);

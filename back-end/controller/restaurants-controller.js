@@ -8,7 +8,10 @@ class restaurantsController {
         
         try {
             
-            const restaurants = await models.restaurants.findById(req.params.id);
+            const restaurants = await models.restaurants.findById(req.params.id).populate({
+                path: "repas",
+
+            });
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -42,9 +45,9 @@ class restaurantsController {
     }
 
     async createrestaurants(req, res) {
+        
         let images = []
         const uploadedImages = req.files
-        console.log(uploadedImages);
         for (const uploadedImage of uploadedImages) {
             images.push(uploadedImage.filename)
         }
@@ -70,7 +73,7 @@ class restaurantsController {
                     restaurantImage: result.restaurantImage,
                     type: result.type,
                     city: result.city,
-                    address: result.description
+                    address: result.address
                 }
             });
         }).catch(err => {
