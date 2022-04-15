@@ -2,6 +2,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as BiIcons  from "react-icons/bi";
+import * as MdIcons from "react-icons/md"
 
 export const SidebarData = [
   {
@@ -11,30 +12,22 @@ export const SidebarData = [
     icon: <AiIcons.AiFillHome />,
   },
   {
-    title: 'Clients',
-    path: '/dashboard/clients',
+    title: 'Users',
+    path: '/dashboard/users',
     cName: 'nav-text',
     icon:  <IoIcons.IoMdPeople />
   },
   {
-    title: 'Owners',
-    path: '/dashboard/owners',
+    title: 'chefsecteur',
+    path: '/dashboard/chefsecteur',
     cName: 'nav-text',
-    icon : <FaIcons.FaUserTie />
-    
-    
+    icon : <FaIcons.FaUserTie /> 
   },
   {
-    title: 'Hotels',
-    path: '/dashboard/hotels',
+    title: 'livreurs',
+    path: '/dashboard/livreurs',
     cName: 'nav-text',
-    icon : <FaIcons.FaHotel />
-  },
-  {
-    title: 'Rooms',
-    path: '/dashboard/rooms',
-    cName: 'nav-text',
-    icon : <FaIcons.FaBed />
+    icon : <MdIcons.MdDeliveryDining />
   },
   {
     title: 'Profile',

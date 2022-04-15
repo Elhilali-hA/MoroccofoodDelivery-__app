@@ -1,31 +1,31 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import './Users.css'
+// import './chefs.css'
 
 
-function Add_user() {
+function Add_chef() {
 
-  const baseURL = 'http://localhost:3000/api/users'
-  const [Add_users, set_addusers] = useState({
+  const baseURL = 'http://localhost:3000/api/chef_secteur'
+  const [Add_chefs, set_addchefs] = useState({
     email: "",
     name:"",
     password:"",
-    role:""
+    secteur: ""
   })
 
   const [error, setError] = useState("") 
 
   const handleChage = ({ currentTarget: input }) => {
-    set_addusers({ ...Add_users, [input.name]: input.value });
+    set_addchefs({ ...Add_chefs, [input.name]: input.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_users);
+      const response = await axios.post(baseURL, Add_chefs);
       console.log(response.data);
   
-      window.location = "/users" 
+      window.location = "/chef_secteur" 
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&
@@ -48,7 +48,7 @@ function Add_user() {
             placeholder='Email'
             name='email'
             onChange={handleChage}
-            value={Add_users.email}
+            value={Add_chefs.email}
             required className="form-control" id="inputEmail4" />
     </div>
     <div className="form-group col-md-3">
@@ -57,7 +57,7 @@ function Add_user() {
             placeholder="Password"
             name="password"
             onChange={handleChage}
-            value={Add_users.password}
+            value={set_addchefs.password}
             required className="form-control" id="inputPassword4" />
     </div>
   </div>
@@ -67,21 +67,12 @@ function Add_user() {
             name="name"
             placeholder="Name"
             onChange={handleChage}
-            value={Add_users.name}
+            value={set_addchefs.name}
             className="form-control"  />
   </div>
  
   <div className="form-row">
-    
-    <div className="form-group col-md-3">
-      <label htmlFor="inputPassword4">Role</label>
-      <input  type="text"
-            placeholder="role"
-            name="role"
-            onChange={handleChage}
-            value={Add_users.role}
-            required className="form-control" id="inputPassword4" />
-    </div>
+
 
   </div>
   {error && <div className="error_msg"> (errror)</div>}
@@ -93,4 +84,4 @@ function Add_user() {
   )
 }
 
-export default Add_user
+export default Add_chef

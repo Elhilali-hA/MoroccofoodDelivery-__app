@@ -24,9 +24,7 @@ class LivreurController {
             const livreur = await models.livreur.find();
             res.status(202).json({
                 status: 'success',
-                data: {
-                    livreur,
-                },
+                livreur: livreur
             });
         } catch (err) {
             throw new AppException(err, 400);

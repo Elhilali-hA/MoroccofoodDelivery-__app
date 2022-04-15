@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dash'
-import Showusers from '../../components/Clients/Show_user'
-import './Pages.css'
+import Navbar from '../../components/Nav_dashboard'
+import Showusers from '../../components/Users/Show_user'
+import './pages.css'
 
 
 

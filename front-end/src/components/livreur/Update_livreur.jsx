@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import './Users.css'
+import './livreur.css'
 
 
-function Add_user() {
+function Add_livreur() {
 
-  const baseURL = 'http://localhost:3000/api/users'
-  const [Add_users, set_addusers] = useState({
+  const baseURL = 'http://localhost:3000/api/livreurs'
+  const [Add_livreurs, set_addlivreurs] = useState({
     email: "",
     name:"",
     password:"",
@@ -16,16 +16,16 @@ function Add_user() {
   const [error, setError] = useState("") 
 
   const handleChage = ({ currentTarget: input }) => {
-    set_addusers({ ...Add_users, [input.name]: input.value });
+    set_addlivreurs({ ...Add_livreurs, [input.name]: input.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_users);
+      const response = await axios.post(baseURL, Add_livreurs);
       console.log(response.data);
   
-      window.location = "/users" 
+      window.location = "/livreurs" 
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&
@@ -48,7 +48,7 @@ function Add_user() {
             placeholder='Email'
             name='email'
             onChange={handleChage}
-            value={Add_users.email}
+            value={Add_livreurs.email}
             required className="form-control" id="inputEmail4" />
     </div>
     <div className="form-group col-md-3">
@@ -57,7 +57,7 @@ function Add_user() {
             placeholder="Password"
             name="password"
             onChange={handleChage}
-            value={Add_users.password}
+            value={set_addlivreurs.password}
             required className="form-control" id="inputPassword4" />
     </div>
   </div>
@@ -67,7 +67,7 @@ function Add_user() {
             name="name"
             placeholder="Name"
             onChange={handleChage}
-            value={Add_users.name}
+            value={set_addlivreurs.name}
             className="form-control"  />
   </div>
  
@@ -79,7 +79,7 @@ function Add_user() {
             placeholder="role"
             name="role"
             onChange={handleChage}
-            value={Add_users.role}
+            value={set_addlivreurs.role}
             required className="form-control" id="inputPassword4" />
     </div>
 
@@ -93,4 +93,4 @@ function Add_user() {
   )
 }
 
-export default Add_user
+export default Add_livreur

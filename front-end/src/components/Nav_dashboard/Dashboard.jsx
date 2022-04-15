@@ -3,6 +3,7 @@ import { FaBars } from 'react-icons/fa'
 import { AiOutlineClose, AiOutlineUserSwitch  } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData';
+import * as BiIcons from "react-icons/bi"
 import './Navbar.css'
 import { IconContext } from 'react-icons';
 import { Dropdown } from 'react-bootstrap';
@@ -31,17 +32,19 @@ export default function Navbar ()  {
 
             <div className='d-flex ul_right'>
             
-                <li className="nav-item1">
+                <div className="nav-item1">
                <a className="nav-link active" href="#">UserName</a>
-            </li>
+            </div>
           
-
-           <li className="nav-item1">
+            
+           <div className="nav-item2">
              
            <Dropdown >
-          <Dropdown.Toggle  variant="primary" id="dropdown-basic">
-           <a className="nav-link" href="#"><AiOutlineUserSwitch size="15" /></a>
+           <a className="nav-link" href="#">
+          <Dropdown.Toggle  variant="dark" id="dropdown-basic">
+             <BiIcons.BiUserCircle size="20" />
           </Dropdown.Toggle>
+          </a>
 
            <Dropdown.Menu>
            <Dropdown.Item onClick={handleLogout}>Profile</Dropdown.Item>
@@ -49,7 +52,7 @@ export default function Navbar ()  {
            <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
            </Dropdown.Menu>
            </Dropdown>
-            </li>
+            </div>
 
             </div>
 

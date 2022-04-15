@@ -1,79 +1,80 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from "axios";
 import * as BiIcons  from "react-icons/bi";
 import * as BsIcons from "react-icons/bs";
 import * as GrIcons from "react-icons/gr";
-import { Button, Modal,  } from 'react-bootstrap';
-import Adduser from './Add_user';
-import Updateuser from './Update_user';
+import { Button, Modal } from 'react-bootstrap';
+import Addchef from './Add_chefs';
+import Updatechef from './Update_chefs';
 
 
 
 
-function Show_user() {
+function Show_chef() {
 
-  const baseURL = "http://localhost:3000/api/users";
+  const baseURL = "http://localhost:3000/api/chef_secteur";
 
-  let [users, setusers] = useState([])
-  const [user, set_user] = useState();
+  let [chefs, setchefs] = useState([])
+  const [chef, set_chef] = useState();
   const [Add, setAdd] = useState(false);
   const [Update, setUpdate] = useState(false);
   const handleCloseU = () => setUpdate(false);
   const token = JSON.parse(localStorage.getItem('name'));
 
 
-  
+ 
   async function getDAta(){
 
     let res = await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} })
     let cli = await res.data
     if(cli.data){
-      setusers(cli.data.users);
+      setchefs(cli.data.chefs);
     }
     }
+
 
   const deleteData = (id, e) =>{
 
-    axios.delete(`http://localhost:3000/api/users/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
+    axios.delete(`http://localhost:3000/api/chef_secteur/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
     
       alert("Post deleted!");
-      setusers(null)
+      setchefs(null)
   })
   }
 
 
  useEffect( () => {
   getDAta()
-  }, [Update, user]);
+  }, [Update, chef]);
 
   
-  const handleUpdate = (user) => {
-    set_user(user)
+  const handleUpdate = (chef) => {
+    set_chef(chef)
     setUpdate(true)
     };
+
+   
 
   const handleClose = () => setAdd(false);
   const handleAdd = () => setAdd(true);
 
-  if(!users) return <div className="add-no"> no chefs  <Button size="sm"  className='add-button mt-2' variant="primary" onClick={handleAdd}>
+  if(!chefs) return <div className="add-no"> no chefs  <Button size="sm"  className='add-button mt-2' variant="primary" onClick={handleAdd}>
   <BiIcons.BiUserPlus size="20"  />
 
       </Button></div> 
 
 
-const data = users.map((user, index) => {
+const data = chefs.map((chef, index) => {
   return(
 
     <tr key={index}>
-      <td > <p>{user._id}</p> </td>
-      <td > <p>{user.name}</p> </td>
-      <td > <p>{user.email}</p> </td>
-      <td > <p>{user.role}</p> </td>
-
-      <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(user)}>
+      <td > <p>{chef._id}</p> </td>
+      <td > <p>{chef.name}</p> </td>
+      <td > <p>{chef.email}</p> </td>
+      <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(chef)}>
             <GrIcons.GrUpdate size="10"  />
           </Button></td>
-      <td><Button size="sm"  variant="danger" onClick={()=> deleteData(user._id)}>
+      <td><Button size="sm"  variant="danger" onClick={()=> deleteData(chef._id)}>
             <BsIcons.BsFillTrashFill size="10"  />
           </Button></td>
   
@@ -84,6 +85,7 @@ const data = users.map((user, index) => {
 
   return (
     <>
+    
     <table className="table table-striped">
   <thead>
     <tr>
@@ -94,8 +96,9 @@ const data = users.map((user, index) => {
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
       <th scope="col">
-      <Button size="sm"  className='add-button' variant="primary" onClick={handleAdd}>
-            <BiIcons.BiUserPlus size="20"  />
+      <Button size="sm"  className='menu-bars' variant="primary" onClick={handleAdd}>
+      <BiIcons.BiUserPlus size="20"  />
+
           </Button>
       </th>
 
@@ -111,10 +114,10 @@ const data = users.map((user, index) => {
 
       <Modal show={Add} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
+          <Modal.Title>Add chef</Modal.Title>
         </Modal.Header>
 
-        <Adduser />
+        <Addchef />
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -126,10 +129,10 @@ const data = users.map((user, index) => {
 
       <Modal show={Update} onHide={handleCloseU}>
         <Modal.Header closeButton>
-          <Modal.Title>Add User</Modal.Title>
+          <Modal.Title>Add chef</Modal.Title>
         </Modal.Header>
 
-        <Updateuser data={user} close={handleCloseU} />
+        <Updatechef data={chef} close={handleCloseU} />
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseU}>
@@ -143,4 +146,4 @@ const data = users.map((user, index) => {
   )
 }
 
-export default Show_user
+export default Show_chef
