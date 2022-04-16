@@ -16,14 +16,17 @@ function Add_livreur() {
   const [error, setError] = useState("") 
   const token = JSON.parse(localStorage.getItem('name'));
 
-  const handleChage = ({ currentTarget: input }) => {
-    set_addlivreurs({ ...Add_livreurs, [input.name]: input.value });
-  };
+ 
+
+
+  function handleChage({ currentTarget: input }) {
+    set_addlivreurs({ ...Add_livreurs, [input.name]: input.value })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, { headers: {"Authorization" : `Bearer ${token}`} }, Add_livreurs);
+      const response = await axios.post(baseURL,  { headers: {"Authorization" : `Bearer ${token}`} },Add_livreurs);
       console.log(response.data);
   
       window.location = "/livreurs" 

@@ -140,7 +140,7 @@ console.log(res.data.livreur);
           <Modal.Title>Add livreur</Modal.Title>
         </Modal.Header>
 
-        <Addlivreur />
+        <Addlivreur data={livreur} close={handleCloseU}/>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

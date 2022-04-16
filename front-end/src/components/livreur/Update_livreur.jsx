@@ -18,11 +18,12 @@ function Add_livreur() {
   const handleChage = ({ currentTarget: input }) => {
     set_addlivreurs({ ...Add_livreurs, [input.name]: input.value });
   };
+  const token = JSON.parse(localStorage.getItem('name'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_livreurs);
+      const response = await axios.post(baseURL, Add_livreurs,  { headers: {"Authorization" : `Bearer ${token}`} });
       console.log(response.data);
   
       window.location = "/livreurs" 

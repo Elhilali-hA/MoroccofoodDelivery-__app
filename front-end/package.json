@@ -10,10 +10,6 @@
     "axios": "^0.26.1",
     "bootstrap": "^4.6.0",
     "bootstrap4": "^0.0.1-security",
-    "cookie-signature": "^1.2.0",
-    "crypto": "^1.0.1",
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security",
     "jquery": "^3.5.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.27.0",
@@ -31,10 +27,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.0",
     "reactstrap": "^9.0.1",
-    "stream": "^0.0.2",
-    "styled-components": "^5.1.1",
-    "web-vitals": "^2.1.4",
-    "zlib": "^1.0.5"
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
