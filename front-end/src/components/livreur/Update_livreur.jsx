@@ -1,97 +1,63 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import './livreur.css'
+import { useState, useEffect} from 'react'
+import axios from "axios";
+import React from "react";
 
-
-function Add_livreur() {
-
-  const baseURL = 'http://localhost:3000/api/livreurs'
-  const [Add_livreurs, set_addlivreurs] = useState({
-    email: "",
-    name:"",
-    password:"",
-    role:""
-  })
-
-  const [error, setError] = useState("") 
-
-  const handleChage = ({ currentTarget: input }) => {
-    set_addlivreurs({ ...Add_livreurs, [input.name]: input.value });
-  };
-  const token = JSON.parse(localStorage.getItem('name'));
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(baseURL, Add_livreurs,  { headers: {"Authorization" : `Bearer ${token}`} });
-      console.log(response.data);
+function Update_Livreurs({data,Close}) {  
   
-      window.location = "/livreurs" 
-      } catch (error) {
-      if (error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500 
-      ){
-        setError(error.response.data.message)
-
+  
+  
+  const [Livreurs, set_Livreurs] = useState(
+    data
+    
+    );
+    
+    const baseURL = `http://localhost:3000/api/livreurs/`
+  
+      const updateLivreur =(e)=>{
+          e.preventDefault();
+          axios.put(`${baseURL}/${Livreurs._id}`, Livreurs).then((response) => {
+              console.log(response);
+              Close();
+          });
+     
+         
       }
-    }
-  }
+    
+      const handelInput =(e)=>{
+  
+          set_Livreurs({...Livreurs, [e.target.name] : e.target.value})
+          console.log(Livreurs)
+      }
 
+  
 
   return (
+
     <>
-    <form className="p-2" onSubmit={handleSubmit}>
+     <form className="p-2"  onSubmit={updateLivreur}>
   <div className="form-row">
     <div className="form-group col-md-3">
-      <label htmlFor="inputEmail4">Email</label>
-      <input type="email"
-            placeholder='Email'
-            name='email'
-            onChange={handleChage}
-            value={Add_livreurs.email}
-            required className="form-control" id="inputEmail4" />
+      <label htmlFor="Email">Email</label>
+      <input type="email" onChange={handelInput}  className="form-control" value={Livreurs.email}  />
     </div>
     <div className="form-group col-md-3">
-      <label htmlFor="inputPassword4">Password</label>
-      <input  type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChage}
-            value={set_addlivreurs.password}
-            required className="form-control" id="inputPassword4" />
+      <label htmlFor="Password">Password</label>
+      <input type="password" onChange={handelInput}  className="form-control" value={Livreurs.password} />
     </div>
   </div>
   <div className="form-group">
-    <label htmlFor="inputAddress">Name</label>
-    <input type="text"
-            name="name"
-            placeholder="Name"
-            onChange={handleChage}
-            value={set_addlivreurs.name}
-            className="form-control"  />
+    <label htmlFor="Name">Name</label>
+    <input type="text" onChange={handelInput}  className="form-control" value={Livreurs.name}  />
   </div>
- 
-  <div className="form-row">
-    
-    <div className="form-group col-md-3">
-      <label htmlFor="inputPassword4">Role</label>
-      <input  type="text"
-            placeholder="role"
-            name="role"
-            onChange={handleChage}
-            value={set_addlivreurs.role}
-            required className="form-control" id="inputPassword4" />
-    </div>
 
-  </div>
-  {error && <div className="error_msg"> (errror)</div>}
+  
 
-  <button type="submit" className="btn btn-primary">Add</button>
+  <button type="submit" className="btn btn-primary">Update</button>
 </form>
+      
       
     </>
   )
 }
 
-export default Add_livreur
+export default Update_Livreurs

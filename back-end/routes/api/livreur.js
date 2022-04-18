@@ -10,7 +10,7 @@ export default {
         auth,
         function (req, res, next) {
           authrization(req, res, next, 'admin', 'chef_secteur');
-        },
+        }
       ],
     },
     routes: [

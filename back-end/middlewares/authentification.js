@@ -6,11 +6,13 @@ import AppException from '../exceptions/AppException.js';
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
+  console.log(token);
 
   if (!token)
     return next(new AppException('You need to be logged in first!', 401));
+    console.log('ggg');
 
-  await jwt.verify(token, process.env.APP_KEY, async (err, user) => {
+    jwt.verify(token, process.env.APP_KEY, async (err, user) => {
     if (err) return next(new AppException(err, 401));
 
     try {
@@ -40,7 +42,7 @@ const auth = async (req, res, next) => {
       req.user = authUser;
       next();
     } catch (e) {
-      return next(new AppException('You need to be logged in first!', 401));
+      return next(new AppException('You need logged in first!', 401));
     }
   });
 };

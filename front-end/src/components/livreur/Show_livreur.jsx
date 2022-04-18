@@ -20,7 +20,7 @@ function Show_livreur() {
   const [Update, setUpdate] = useState(false);
   const handleCloseU = () => setUpdate(false);
   const token = JSON.parse(localStorage.getItem('name'));
-
+   
 
  
   async function getDAta(){
@@ -36,7 +36,7 @@ console.log(res.data.livreur);
 
   const deleteData = (id, e) =>{
 
-    axios.delete(`http://localhost:3000/api/livreurs/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
+    axios.delete(`http://localhost:3000/api/livreurs/${id}`,  {"Authorization" : `Bearer ${token}`} ).then(() => {
     
       alert("Post deleted!");
       set_livreurs(null)
@@ -116,8 +116,6 @@ console.log(res.data.livreur);
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Adress</th>
-      <th scope="col">Phone</th>
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
       <th scope="col">
@@ -140,7 +138,7 @@ console.log(res.data.livreur);
           <Modal.Title>Add livreur</Modal.Title>
         </Modal.Header>
 
-        <Addlivreur data={livreur} close={handleCloseU}/>
+        <Addlivreur />
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

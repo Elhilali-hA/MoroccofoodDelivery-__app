@@ -24,9 +24,11 @@ const Signup = () => {
         try {
           const url ="http://localhost:3000/api/auth/login"; 
           const response = await axios.post(url, data);
-          console.log(response.data.accessToken);
+          // console.log(response.data.accessToken);
           const user = jwt_decode(response.data.accessToken);
           localStorage.setItem("name", JSON.stringify(response.data.accessToken))
+          document.cookie = "token=" + JSON.stringify(response.data.accessToken);
+        
           if(user.role==="client"){
             window.location = "/" 
         
