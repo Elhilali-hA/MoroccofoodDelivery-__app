@@ -6,6 +6,8 @@ import * as GrIcons from "react-icons/gr";
 import { Button, Modal } from 'react-bootstrap';
 import Addchef from './Add_chefs';
 import Updatechef from './Update_chefs';
+import Swal from 'sweetalert2'
+
 
 
 
@@ -25,11 +27,12 @@ function Show_chef() {
  
   async function getDAta(){
 
-    let res = await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} })
-    let cli = await res.data
-    if(cli.data){
-      setchefs(cli.data.chefs);
-    }
+    await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} }).then((res) => {
+
+      console.log(res.data.chefs);
+      setchefs(res.data.chefs);
+    })
+    
     }
 
 
@@ -37,7 +40,14 @@ function Show_chef() {
 
     axios.delete(`http://localhost:3000/api/chef_secteur/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
     
-      alert("Post deleted!");
+      setTimeout(() => {
+        Swal.fire(
+          'Done !',
+          'You delete a chef!',
+          'success'
+        )
+       
+      }, 1000)
       setchefs(null)
   })
   }
@@ -58,29 +68,31 @@ function Show_chef() {
   const handleClose = () => setAdd(false);
   const handleAdd = () => setAdd(true);
 
-  if(!chefs) return <div className="add-no"> no chefs  <Button size="sm"  className='add-button mt-2' variant="primary" onClick={handleAdd}>
-  <BiIcons.BiUserPlus size="20"  />
-
-      </Button></div> 
+  
 
 
 const data = chefs.map((chef, index) => {
-  return(
-
-    <tr key={index}>
-      <td > <p>{chef._id}</p> </td>
-      <td > <p>{chef.name}</p> </td>
-      <td > <p>{chef.email}</p> </td>
-      <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(chef)}>
-            <GrIcons.GrUpdate size="10"  />
-          </Button></td>
-      <td><Button size="sm"  variant="danger" onClick={()=> deleteData(chef._id)}>
-            <BsIcons.BsFillTrashFill size="10"  />
-          </Button></td>
   
-  </tr> 
-  )
-})
+   
+
+      return(
+    
+        <tr key={index}>
+          <td > <p>{chef._id}</p> </td>
+          <td > <p>{chef.name}</p> </td>
+          <td > <p>{chef.email}</p> </td>
+          <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(chef)}>
+                <GrIcons.GrUpdate size="10"  />
+              </Button></td>
+          <td><Button size="sm"  variant="danger" onClick={()=> deleteData(chef._id)}>
+                <BsIcons.BsFillTrashFill size="10"  />
+              </Button></td>
+      
+      </tr> 
+      )
+    
+  })
+
 
 
   return (
@@ -96,7 +108,7 @@ const data = chefs.map((chef, index) => {
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
       <th scope="col">
-      <Button size="sm"  className='menu-bars' variant="primary" onClick={handleAdd}>
+      <Button size="sm"  className='add-button' variant="primary" onClick={handleAdd}>
       <BiIcons.BiUserPlus size="20"  />
 
           </Button>

@@ -37,7 +37,7 @@ export default {
       {
         method: 'delete',
         path: '/:id',
-        handler: userController.deleteuser,
+        handler: userController.deleteusers,
       },
     ],
   };

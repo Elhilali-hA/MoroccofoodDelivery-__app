@@ -24,9 +24,9 @@ class chef_secteurController {
             const chef_secteur = await models.chef_secteur.find();
             res.status(202).json({
                 status: 'success',
-                data: {
-                    chef_secteur,
-                },
+                
+                 chefs: chef_secteur,
+                
             });
         } catch (err) {
             throw new AppException(err, 400);

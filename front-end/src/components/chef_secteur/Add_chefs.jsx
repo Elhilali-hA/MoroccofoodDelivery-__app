@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 // import './chefs.css'
+import Swal from 'sweetalert2'
+
 
 
 function Add_chef() {
@@ -19,13 +21,24 @@ function Add_chef() {
     set_addchefs({ ...Add_chefs, [input.name]: input.value });
   };
 
+  const token = JSON.parse(localStorage.getItem('name'));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_chefs);
-      console.log(response.data);
-  
-      window.location = "/chef_secteur" 
+       await axios.post(baseURL, Add_chefs,  { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
+
+         setTimeout(() => {
+           Swal.fire(
+             'Good job!',
+             'You add a chef!',
+             'success'
+           )
+          
+         }, 1000)
+     
+         window.location = "/dashboard/chefsecteur" 
+       });
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&
@@ -57,7 +70,7 @@ function Add_chef() {
             placeholder="Password"
             name="password"
             onChange={handleChage}
-            value={set_addchefs.password}
+            value={Add_chefs.password}
             required className="form-control" id="inputPassword4" />
     </div>
   </div>
@@ -67,12 +80,18 @@ function Add_chef() {
             name="name"
             placeholder="Name"
             onChange={handleChage}
-            value={set_addchefs.name}
+            value={Add_chefs.name}
             className="form-control"  />
   </div>
  
   <div className="form-row">
-
+  <label htmlFor="inputAddress">Name</label>
+    <input type="text"
+            name="secteur"
+            placeholder="scteur"
+            onChange={handleChage}
+            value={Add_chefs.secteur}
+            className="form-control"  />
 
   </div>
   {error && <div className="error_msg"> (errror)</div>}

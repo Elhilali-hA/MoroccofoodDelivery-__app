@@ -18,8 +18,6 @@ function Add_livreur() {
   const [error, setError] = useState("") 
   const token = JSON.parse(localStorage.getItem('name'));
 
-
-  console.log(token)
   
  
 
@@ -43,12 +41,6 @@ function Add_livreur() {
          
         }, 1000)
         
-       ).catch(
-        Swal.fire(
-          'bad job!',
-          'nothing add!',
-          'error'
-        )
        )
        
       

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import './Users.css'
+import Swal from 'sweetalert2'
 
 
 function Add_user() {
@@ -13,6 +14,9 @@ function Add_user() {
     role:""
   })
 
+  const token = JSON.parse(localStorage.getItem('name'));
+
+
   const [error, setError] = useState("") 
 
   const handleChage = ({ currentTarget: input }) => {
@@ -22,10 +26,19 @@ function Add_user() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_users);
-      console.log(response.data);
-  
-      window.location = "/users" 
+      const response = await axios.post(baseURL, Add_users,  { headers: {"Authorization" : `Bearer ${token}`} }).then(
+
+        window.location = "/dashboard/users" ,
+        setTimeout(() => {
+          Swal.fire(
+            'Good job!',
+            'You add a user!',
+            'success'
+          )
+          
+          
+        }, 1000)
+        )
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&

@@ -45,7 +45,7 @@ console.log(res.data.livreur);
         'success'
         )
         set_livreurs(null)
-      window.location = "/dashboard/livreurs" 
+      
   })
   }
 
@@ -66,27 +66,7 @@ console.log(res.data.livreur);
 
 
         
-          // if(!livreurs){
-          //   return <div className="add-no"> No livreurs  <Button size="sm"  className='add-button mt-2' variant="primary" onClick={handleAdd}>
-          //   <BiIcons.BiUserPlus size="20"  />
           
-          //       </Button>
-          //       <Modal show={Add} onHide={handleClose}>
-          //         <Modal.Header closeButton>
-          //           <Modal.Title>Add livreur</Modal.Title>
-          //         </Modal.Header>
-          
-          //         <Addlivreur />
-          
-          //         <Modal.Footer>
-          //           <Button variant="secondary" onClick={handleClose}>
-          //             Close
-          //           </Button>
-          
-          //         </Modal.Footer>
-          //       </Modal>
-          //       </div> 
-          // }
 
        const data = livreurs.map((livreur,index) => {
     

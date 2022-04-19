@@ -6,6 +6,7 @@ import * as GrIcons from "react-icons/gr";
 import { Button, Modal,  } from 'react-bootstrap';
 import Adduser from './Add_user';
 import Updateuser from './Update_user';
+import Swal from 'sweetalert2'
 
 
 
@@ -36,7 +37,12 @@ function Show_user() {
 
     axios.delete(`http://localhost:3000/api/users/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
     
-      alert("Post deleted!");
+      Swal.fire(
+        'Done !',
+        'You delete a user!',
+        'success'
+        )
+        window.location = "/dashboard/users"
       setusers(null)
   })
   }
@@ -55,10 +61,6 @@ function Show_user() {
   const handleClose = () => setAdd(false);
   const handleAdd = () => setAdd(true);
 
-  if(!users) return <div className="add-no"> no chefs  <Button size="sm"  className='add-button mt-2' variant="primary" onClick={handleAdd}>
-  <BiIcons.BiUserPlus size="20"  />
-
-      </Button></div> 
 
 
 const data = users.map((user, index) => {

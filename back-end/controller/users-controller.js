@@ -36,9 +36,9 @@ class usersController {
         }
     }
 
-    async createadmin(req, res) {
+    async createuser(req, res) {
         try {
-            const newusers = await models.users.create({ ...req.body, role:'admin' });
+            const newusers = await models.users.create(req.body);
             res.status(202).json({
                 status: 'success',
                 data: {
