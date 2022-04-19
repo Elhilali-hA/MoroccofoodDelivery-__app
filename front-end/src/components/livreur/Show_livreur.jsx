@@ -6,6 +6,7 @@ import * as GrIcons from "react-icons/gr";
 import { Button, Modal } from 'react-bootstrap';
 import Addlivreur from './Add_livreur';
 import Updatelivreur from './Update_livreur';
+import Swal from 'sweetalert2'
 
 
 
@@ -36,10 +37,15 @@ console.log(res.data.livreur);
 
   const deleteData = (id, e) =>{
 
-    axios.delete(`http://localhost:3000/api/livreurs/${id}`,  {"Authorization" : `Bearer ${token}`} ).then(() => {
+    axios.delete(`http://localhost:3000/api/livreurs/${id}`,  { headers: {"Authorization" : `Bearer ${token}`} } ).then(() => {
     
-      alert("Post deleted!");
-      set_livreurs(null)
+      Swal.fire(
+        'Good job!',
+        'You delete a deliver!',
+        'success'
+        )
+        set_livreurs(null)
+      window.location = "/dashboard/livreurs" 
   })
   }
 

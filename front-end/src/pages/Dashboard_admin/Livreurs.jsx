@@ -14,7 +14,7 @@ const Deliver = () => {
       </div>
 
 
-      <div className='col-md-10 text-center m-auto'>
+      <div className='col-md-10 text-center float-right'>
 
       <Livreur />
       </div>

@@ -19,7 +19,7 @@ import chefsecteur from './pages/Dashboard_admin/Chef_secteur';
 
 function App() {
   return (
-    <>
+    <div className="App">
 
 <BrowserRouter>
 
@@ -38,7 +38,7 @@ function App() {
 
 </BrowserRouter>
 
-    </>
+    </div>
   );
 }
 

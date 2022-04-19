@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import './livreur.css'
+import Swal from 'sweetalert2'
 
 
 function Add_livreur() {
@@ -15,9 +16,10 @@ function Add_livreur() {
   console.log(add_livreurs.email, add_livreurs.name, add_livreurs.password);
 
   const [error, setError] = useState("") 
-  const tokenaccess = document.cookie;
+  const token = JSON.parse(localStorage.getItem('name'));
 
-  console.log(tokenaccess)
+
+  console.log(token)
   
  
 
@@ -29,9 +31,27 @@ function Add_livreur() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, { headers: {"Authorization" : `Bearer ${tokenaccess}`} }, add_livreurs);
-       console.log(response.data);
-      window.location = "/dashboard/livreurs" 
+       await axios.post(baseURL,  add_livreurs, { headers: {"Authorization" : `Bearer ${token}`} }).then(
+
+        window.location = "/dashboard/livreurs" ,
+        setTimeout(() => {
+          Swal.fire(
+            'Good job!',
+            'You add a deliver!',
+            'success'
+          )
+         
+        }, 1000)
+        
+       ).catch(
+        Swal.fire(
+          'bad job!',
+          'nothing add!',
+          'error'
+        )
+       )
+       
+      
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&

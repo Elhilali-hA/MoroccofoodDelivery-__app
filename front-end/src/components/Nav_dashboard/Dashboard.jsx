@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { FaBars } from 'react-icons/fa'
-import { AiOutlineClose, AiOutlineUserSwitch  } from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData';
 import * as BiIcons from "react-icons/bi"
 import './Navbar.css'
 import { IconContext } from 'react-icons';
 import { Dropdown } from 'react-bootstrap';
+import jwt_decode from "jwt-decode";
+
 
 
 
@@ -18,6 +20,12 @@ export default function Navbar ()  {
         window.location.href = '/';
 
   }
+
+  const token = JSON.parse(localStorage.getItem('name'));
+  const user = jwt_decode(token);
+  
+
+
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
@@ -33,7 +41,7 @@ export default function Navbar ()  {
             <div className='d-flex ul_right'>
             
                 <div className="nav-item1">
-               <a className="nav-link active" href="#">UserName</a>
+               <a className="nav-link active" href="#">{user.name}</a>
             </div>
           
             
