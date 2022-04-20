@@ -39,6 +39,12 @@ export default {
         path: '/:id',
         handler: userController.deleteusers,
       },
+      {
+        method: 'post',
+        path: '/profile',
+        handler: userController.profile,
+      },
+      
     ],
   };
 

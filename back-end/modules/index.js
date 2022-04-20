@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
 class Tokenizer {
-  generateAccessToken(user) {
-    return jwt.sign(user, process.env.APP_KEY, {
+  generateAccessToken(id) {
+    return jwt.sign(id, process.env.APP_KEY, {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
   }
