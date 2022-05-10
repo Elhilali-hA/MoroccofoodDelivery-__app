@@ -4,7 +4,7 @@ import './livreur.css'
 import Swal from 'sweetalert2'
 
 
-function Add_livreur() {
+function Add_livreur({Close}) {
 
   const baseURL = 'http://localhost:3000/api/livreurs'
   const [add_livreurs, set_addlivreurs] = useState({
@@ -13,14 +13,11 @@ function Add_livreur() {
     password:"",
   
   })
-  console.log(add_livreurs.email, add_livreurs.name, add_livreurs.password);
 
   const [error, setError] = useState("") 
   const token = JSON.parse(localStorage.getItem('name'));
 
   
- 
-
 
   function handleChange({ currentTarget: input }) {
     set_addlivreurs({ ...add_livreurs, [input.name]: input.value })
@@ -28,31 +25,40 @@ function Add_livreur() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-       await axios.post(baseURL,  add_livreurs, { headers: {"Authorization" : `Bearer ${token}`} }).then(
 
-        window.location = "/dashboard/livreurs" ,
-        setTimeout(() => {
-          Swal.fire(
-            'Good job!',
-            'You add a deliver!',
-            'success'
-          )
-         
-        }, 1000)
-        
-       )
-       
+       try {
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          showDenyButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }
+        ).then((result) => {
+          if (result.isConfirmed) {
+            axios.post(baseURL,  add_livreurs, { headers: {"Authorization" : `Bearer ${token}`} }).then(
+              Close()
+           )
+            Swal.fire('Livreur Deleted!', '', 'success')
+
+            window.location.reload()
+          } else if (result.isDenied) {
+            Close();
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+   
       
-      } catch (error) {
-      if (error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500 
-      ){
-        setError(error.response.data.message)
+    } catch (error) {
+    if (error.response &&
+      error.response.status >= 400 &&
+      error.response.status <= 500 
+    ){
+      setError(error.response.data.message)
 
-      }
     }
+  }
+
+     
   }
 
 

@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
 
 function Show_chef() {
 
-  const baseURL = "http://localhost:3000/api/chef_secteur";
+  const baseURL = "http://localhost:3000/api/chefsecteur";
 
   let [chefs, setchefs] = useState([])
   const [chef, set_chef] = useState();
@@ -38,18 +38,28 @@ function Show_chef() {
 
   const deleteData = (id, e) =>{
 
-    axios.delete(`http://localhost:3000/api/chef_secteur/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
-    
-      setTimeout(() => {
-        Swal.fire(
-          'Done !',
-          'You delete a chef!',
-          'success'
-        )
+  
+
+    Swal.fire({
+      title: 'are you sure?',
+      showDenyButton: true,
+      confirmButtonText: "Yes, i'm sure",
+      denyButtonText: `No, don't save`,
+    }
+    ).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:3000/api/chefsecteur/${id}`, { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
+        
+        const newchefs = chefs.filter(chef => chef._id != id)
+        setchefs(newchefs)
        
-      }, 1000)
-      setchefs(null)
-  })
+          
+    })
+        Swal.fire('Chef Deleted!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
   }
 
 
@@ -81,6 +91,7 @@ const data = chefs.map((chef, index) => {
           <td > <p>{chef._id}</p> </td>
           <td > <p>{chef.name}</p> </td>
           <td > <p>{chef.email}</p> </td>
+          <td > <p>{chef.secteur}</p> </td>
           <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(chef)}>
                 <GrIcons.GrUpdate size="10"  />
               </Button></td>
@@ -105,6 +116,7 @@ const data = chefs.map((chef, index) => {
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
+      <th scope="col">Secteur</th>
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
       <th scope="col">
@@ -129,7 +141,7 @@ const data = chefs.map((chef, index) => {
           <Modal.Title>Add chef</Modal.Title>
         </Modal.Header>
 
-        <Addchef />
+        <Addchef Close={handleClose}/>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -144,7 +156,7 @@ const data = chefs.map((chef, index) => {
           <Modal.Title>Add chef</Modal.Title>
         </Modal.Header>
 
-        <Updatechef data={chef} close={handleCloseU} />
+        <Updatechef data={chef} Close={handleCloseU} />
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseU}>

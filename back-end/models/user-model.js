@@ -47,4 +47,13 @@ const usersSchema = new mongoose.Schema({
     }
 });
 
+usersSchema.virtual("cmd", {
+  ref: "cmd",
+  localField: "_id",
+  foreignField: "user_id",
+})
+
+usersSchema.set("toObject", { virtuals: true })
+usersSchema.set("toJSON", { virtuals: true })
+
 export default usersSchema;

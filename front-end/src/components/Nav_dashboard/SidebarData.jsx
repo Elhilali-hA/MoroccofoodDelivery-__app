@@ -36,6 +36,12 @@ export const SidebarData = [
     icon : <BiIcons.BiUserCircle/> 
   },
   {
+    title: 'restaurants',
+    path: '/dashboard/restaurants',
+    cName: 'nav-text',
+    icon : <BiIcons.BiUserCircle/> 
+  },
+  {
     title: 'commandes',
     path: '/dashboard/commandes',
     cName: 'nav-text',

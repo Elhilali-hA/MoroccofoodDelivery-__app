@@ -32,5 +32,14 @@ const repasSchema = new mongoose.Schema({
     
   });
 
+  repasSchema.virtual("cmd", {
+    ref: "cmd",
+    localField: "_id",
+    foreignField: "repas_id",
+  })
+
+repasSchema.set("toObject", { virtuals: true })
+repasSchema.set("toJSON", { virtuals: true })
+
 
 export default repasSchema;

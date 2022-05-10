@@ -13,10 +13,8 @@ class restaurantsController {
 
             });
             res.status(202).json({
-                status: 'success',
-                data: {
-                    restaurants,
-                },
+                status: 'success', 
+                    restaurants,     
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -35,9 +33,9 @@ class restaurantsController {
             });
             res.status(202).json({
                 status: 'success',
-                data: {
+                 
                     restaurants,
-                },
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -47,15 +45,14 @@ class restaurantsController {
     async createrestaurants(req, res) {
         
         let images = []
-        const uploadedImages = req.files
-        for (const uploadedImage of uploadedImages) {
-            images.push(uploadedImage.filename)
+        const Images = req.files
+        for (const Image of Images) {
+            images.push(Image.filename)
         }
-
         const restaurants = models.restaurants
         const restaurant = new restaurants({
             title: req.body.title,
-            description: req.body.description,
+            description: req.body.description, 
             type: req.body.type,
             city: req.body.city,
             address: req.body.address,
@@ -67,14 +64,14 @@ class restaurantsController {
             console.log(result);
             res.status(201).json({
                 message: 'Created restaurant successfully',
-                createdrestaurant: {
+               
                     title: result.title,
                     description: result.description,
                     restaurantImage: result.restaurantImage,
                     type: result.type,
                     city: result.city,
                     address: result.address
-                }
+                
             });
         }).catch(err => {
             console.log(err);
@@ -85,14 +82,12 @@ class restaurantsController {
     }
 
     async updaterestaurants(req, res) {
+        
 
         try {
             const restaurants = await models.restaurants.findByIdAndUpdate(
                 req.params.id,
-                req.body, {
-                    new: true,
-                    runValidators: true,
-                }
+                req.body
             );
 
             res.status(202).json({

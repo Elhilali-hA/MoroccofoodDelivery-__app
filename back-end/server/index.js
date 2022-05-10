@@ -14,6 +14,7 @@ class Server {
     
     start() {
         this.app.use(cors())
+        this.app.use('/restaurants',express.static('restaurants'));
         this._setupRoutes();
         this._listen();
 

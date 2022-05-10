@@ -4,7 +4,7 @@ import './Users.css'
 import Swal from 'sweetalert2'
 
 
-function Add_user() {
+function Add_user({Close}) {
 
   const baseURL = 'http://localhost:3000/api/users'
   const [Add_users, set_addusers] = useState({
@@ -26,19 +26,27 @@ function Add_user() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(baseURL, Add_users,  { headers: {"Authorization" : `Bearer ${token}`} }).then(
+          Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+          }
+          ).then((result) => {
+            if (result.isConfirmed) {
+              axios.post(baseURL, Add_users,  { headers: {"Authorization" : `Bearer ${token}`} }).then(
+                Close()
+             )
+              Swal.fire('Saved!', '', 'success')
 
-        window.location = "/dashboard/users" ,
-        setTimeout(() => {
-          Swal.fire(
-            'Good job!',
-            'You add a user!',
-            'success'
-          )
-          
-          
-        }, 1000)
-        )
+              window.location.reload()
+            } else if (result.isDenied) {
+              Close();
+              Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+     
+        
       } catch (error) {
       if (error.response &&
         error.response.status >= 400 &&

@@ -3,7 +3,7 @@ import chef_secteurController from '../../controller/chefsecteur-controller.js';
 export default {
 
     group: {
-      prefix: '/chef_secteur',
+      prefix: '/chefsecteur',
     },
     routes: [
       {

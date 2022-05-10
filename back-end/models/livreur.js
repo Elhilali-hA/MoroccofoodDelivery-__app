@@ -37,6 +37,17 @@ const livreurSchema = new mongoose.Schema({
       },
   });
 
+  livreurSchema.virtual('assigned_cmd',{
+    ref: 'assigned_cmd',
+    localField: '_id',
+    foreignField:'livreur_id'
+
+  })
+
+  livreurSchema.set('toObject', { virtuals: true})
+  livreurSchema.set('toJSON', { virtuals: true})
+
+
   
 
 export default livreurSchema;

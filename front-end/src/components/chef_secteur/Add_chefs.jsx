@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-// import './chefs.css'
 import Swal from 'sweetalert2'
 
 
 
-function Add_chef() {
+function Add_chef({Close}) {
 
-  const baseURL = 'http://localhost:3000/api/chef_secteur'
+  const baseURL = 'http://localhost:3000/api/chefsecteur'
   const [Add_chefs, set_addchefs] = useState({
     email: "",
     name:"",
@@ -26,28 +25,37 @@ function Add_chef() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-       await axios.post(baseURL, Add_chefs,  { headers: {"Authorization" : `Bearer ${token}`} }).then(() => {
-
-         setTimeout(() => {
-           Swal.fire(
-             'Good job!',
-             'You add a chef!',
-             'success'
-           )
-          
-         }, 1000)
-     
-         window.location = "/dashboard/chefsecteur" 
-       });
-      } catch (error) {
-      if (error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500 
-      ){
-        setError(error.response.data.message)
-
+      Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
       }
-    }
+      ).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(baseURL, Add_chefs,  { headers: {"Authorization" : `Bearer ${token}`} }).then(
+            Close()
+         )
+          Swal.fire('Saved!', '', 'success')
+
+          window.location.reload()
+        } else if (result.isDenied) {
+          Close();
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+ 
+    
+  } catch (error) {
+  if (error.response &&
+    error.response.status >= 400 &&
+    error.response.status <= 500 
+  ){
+    setError(error.response.data.message)
+
+  }
+}
+     
   }
 
 

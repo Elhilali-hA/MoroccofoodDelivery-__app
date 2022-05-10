@@ -5,6 +5,8 @@ import chef_secteurSchema from './chef_secteur.js'
 import restaurantsSchema from './restaurants.js'
 import categorieSchema from './categorie.js'
 import repasSchema from './repas.js'
+import commandSchema from './commande.js'
+import assigned_cmdSchema from './assigned_cmd.js'
 
 
 mongoose
@@ -23,6 +25,10 @@ models.chef_secteur = mongoose.model('chef_secteur', chef_secteurSchema);
 models.restaurants = mongoose.model('restaurants', restaurantsSchema);
 models.repas = mongoose.model('repas', repasSchema);
 models.categorie = mongoose.model('categorie', categorieSchema);
+models.cmd = mongoose.model('cmd', commandSchema);
+models.assigned_cmd = mongoose.model('assigned_cmd', assigned_cmdSchema);
+
+
 
 
 

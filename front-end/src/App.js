@@ -12,6 +12,9 @@ import Login from './components/Login';
 import Users from './pages/Dashboard_admin/Users';
 import Livreurs from './pages/Dashboard_admin/Livreurs';
 import chefsecteur from './pages/Dashboard_admin/Chef_secteur';
+import Profile from './pages/Dashboard_admin/Profile'
+import Restaurants from './pages/Dashboard_admin/Restaurants'
+
 
 
 
@@ -31,6 +34,9 @@ function App() {
 <Route exact path="/dashboard/Livreurs" component={Livreurs} />
 <Route exact path="/dashboard/users" component={Users} />
 <Route exact path="/dashboard/chefsecteur" component={chefsecteur} />
+<Route exact path="/dashboard/profile" component={Profile} />
+<Route exact path="/dashboard/restaurants" component={Restaurants} />
+
 <Route exact path="/register" component={Signup} />
 <Route exact path="/login" component={Login} />
   

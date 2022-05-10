@@ -18,12 +18,12 @@ export default {
       {
         method: 'get',
         path: '/:id',
-        handler: restaurantController.getrestaurants,
+        handler: restaurantController.getrestaurant,
       },
       {
         method: 'get',
         path: '/',
-        handler: restaurantController.getrestaurant,
+        handler: restaurantController.getrestaurants,
       },
       {
         method: 'post',
@@ -32,8 +32,8 @@ export default {
         handler: restaurantController.createrestaurants,
       },
       {
-        method: 'put',
-        path: '/:id',
+        method: 'post',
+        path: '/up/:id',
         handler: restaurantController.updaterestaurants,
       },
       {

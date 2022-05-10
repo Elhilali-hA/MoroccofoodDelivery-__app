@@ -13,6 +13,7 @@ class Router {
     this._handlePageNotFound();
     this._handleExceptions();
     app.use(this.router);
+    
   }
 
   _catchError(handler) {
@@ -33,6 +34,7 @@ class Router {
 
   _attachMiddleware() {
     this.router.use(express.json());
+    this.router.use('./restaurants',express.static('restaurants'));
     this.router.use(express.urlencoded({ extended: false }));
   }
 

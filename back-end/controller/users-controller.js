@@ -25,7 +25,7 @@ class usersController {
             let filter = {}
            if (req.query.name) filter.name = req.query.name;
            if (req.query.role) filter.role = req.query.role;
-            const users = await models.users.find();
+            const users = await models.users.find(filter);
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -64,9 +64,9 @@ class usersController {
 
             res.status(202).json({
                 status: 'success',
-                data: {
-                    users,
-                },
+                
+                users:    users,
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -87,6 +87,26 @@ class usersController {
                 throw new AppException(err, 400);
             }
     }
+
+
+
+
+    async getprofile (req, res)  {
+        try{
+        const user = await models.users.findById(req.user._id);
+
+         res.status(202).json({
+                status: 'success',
+                
+                    user,
+                
+            });
+        } catch (err) {
+            throw new AppException(err, 400);
+        }
+
+          
+      }
 
     async profile (req, res)  {
         const user = await models.users.findById(req.user._id);

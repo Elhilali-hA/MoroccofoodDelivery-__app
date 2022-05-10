@@ -27,26 +27,36 @@ function Show_livreur() {
   async function getDAta(){
 
      await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} }).then((res) =>{
-      // console.log(res);
-console.log(res.data.livreur);
+      
       set_livreurs(res.data.livreur)
-      // console.log(res);
+      
     })
     }
 
 
   const deleteData = (id, e) =>{
 
-    axios.delete(`http://localhost:3000/api/livreurs/${id}`,  { headers: {"Authorization" : `Bearer ${token}`} } ).then(() => {
-    
-      Swal.fire(
-        'Good job!',
-        'You delete a deliver!',
-        'success'
-        )
-        set_livreurs(null)
-      
-  })
+    Swal.fire({
+      title: 'are you sure?',
+      showDenyButton: true,
+      confirmButtonText: "Yes, i'm sure",
+      denyButtonText: `No, don't save`,
+    }
+    ).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:3000/api/livreurs/${id}`,  { headers: {"Authorization" : `Bearer ${token}`} } ).then(() => {
+        
+        const newlivreurs = livreurs.filter(livreur => livreur._id != id)
+        set_livreurs(newlivreurs)
+       
+          
+    })
+        Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+
   }
 
   
@@ -124,7 +134,7 @@ console.log(res.data.livreur);
           <Modal.Title>Add livreur</Modal.Title>
         </Modal.Header>
 
-        <Addlivreur />
+        <Addlivreur Close={handleClose}/>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -139,7 +149,7 @@ console.log(res.data.livreur);
           <Modal.Title>Add livreur</Modal.Title>
         </Modal.Header>
 
-        <Updatelivreur data={livreur} close={handleCloseU} />
+        <Updatelivreur data={livreur} Close={handleCloseU} />
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseU}>

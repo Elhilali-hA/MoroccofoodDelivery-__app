@@ -9,7 +9,7 @@ export default {
       middlewares: [
         auth,
         function (req, res, next) {
-          authrization(req, res, next, 'admin');
+          authrization(req, res, next, 'admin', 'chef_secteur');
         },
       ],
     },
@@ -32,7 +32,7 @@ export default {
       {
         method: 'put',
         path: '/:id',
-        handler: userController.updateuser,
+        handler: userController.updateusers,
       },
       {
         method: 'delete',
@@ -43,6 +43,11 @@ export default {
         method: 'post',
         path: '/profile',
         handler: userController.profile,
+      },
+      {
+        method: 'get',
+        path: '/profile/:id',
+        handler: userController.getprofile,
       },
       
     ],

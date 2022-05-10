@@ -49,6 +49,12 @@ restaurantsSchema.virtual("repas", {
   foreignField: "restaurant_id",
 }),
 
+restaurantsSchema.virtual("cmd", {
+  ref: "cmd",
+  localField: "_id",
+  foreignField: "restaurants_id",
+}),
+
 
 restaurantsSchema.set("toObject", { virtuals: true })
 restaurantsSchema.set("toJSON", { virtuals: true })
