@@ -9,9 +9,9 @@ import Swal from 'sweetalert2'
 
 const Show_cmd = () => {
   
-    const baseURL = "http://localhost:3000/api/commandes";
+    const baseURL = "http://localhost:3000/api/assigned_commandes";
 
-    let [commands, set_commands] = useState([])
+    let [asignedcmd, set_asignedcmd] = useState([])
     const [command, set_command] = useState();
     // const [Add, setAdd] = useState(false);
     // const [Update, setUpdate] = useState(false);
@@ -24,7 +24,7 @@ const Show_cmd = () => {
   
        await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} }).then((res) =>{
         
-        set_commands(res.data.cmd)
+        set_asignedcmd(res.data.assigned_cmd)
         
         
       })
@@ -43,8 +43,8 @@ const Show_cmd = () => {
     //     if (result.isConfirmed) {
     //       axios.delete(`http://localhost:3000/api/commandes/${id}`,  { headers: {"Authorization" : `Bearer ${token}`} } ).then(() => {
           
-    //       const newcommands = commands.filter(command => command._id != id)
-    //       set_commands(newcommands)
+    //       const newasignedcmd = asignedcmd.filter(command => command._id != id)
+    //       set_asignedcmd(newasignedcmd)
          
             
     //   })
@@ -64,18 +64,18 @@ const Show_cmd = () => {
   
     
     // const handleUpdate = (command) => {
-    //   set_command(command)
-    //   setUpdate(true)
-    //   };
+    //    set_command(command)
+    //    setUpdate(true)
+    //    };
   
-    // const handleClose = () => setAdd(false);
-    // const handleAdd = () => setAdd(true);
+    //  const handleClose = () => setAdd(false);
+    //  const handleAdd = () => setAdd(true);
   
   
           
             
     
-    const data = commands.map((command,index) => {
+    const data = asignedcmd.map((cmd,index) => {
            
        
             return(
@@ -83,11 +83,11 @@ const Show_cmd = () => {
                 
                     
                 <tr key={index}>
-                  <td > <p>{command._id}</p> </td>
-                  <td > <p>{command.repas_id.name}</p> </td>
-                  <td > <p>{command.status}</p> </td>
-                  <td > <p>{command.user_id.name}</p> </td>
-                  <td > <p>{command.created_at}</p> </td>
+                  <td > <p>{cmd._id}</p> </td>
+                  <td > <p>{cmd.command_id.id}</p> </td>
+                  <td > <p>{cmd.status}</p> </td>
+                  <td > <p>{cmd.livreur_id.name}</p> </td>
+                  <td > <p>{cmd.created_at}</p> </td>
 
                   {/* <td><Button size="sm"  variant="info" onClick={()=>handleUpdate(command)}>
                         <GrIcons.GrUpdate size="10"  />
@@ -112,9 +112,9 @@ const Show_cmd = () => {
         
       
         <th scope="col">#</th>
-        <th scope="col">Repas</th>
+        <th scope="col">commande</th>
         <th scope="col">Statut</th>
-        <th scope="col">User</th>
+        <th scope="col">Livreur</th>
         <th scope="col">Date de reservation</th>
 
         <th scope="col">Update</th>

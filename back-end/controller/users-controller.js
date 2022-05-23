@@ -40,6 +40,7 @@ class usersController {
     async createuser(req, res) {
         try {
             const newusers = await models.users.create(req.body);
+            
             res.status(202).json({
                 status: 'success',
                 data: {

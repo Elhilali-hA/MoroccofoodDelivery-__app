@@ -27,7 +27,6 @@ function Show_restau() {
   async function getDAta(){
     let res = await axios.get(baseURL, { headers: {"Authorization" : `Bearer ${token}`} })
     let cli = await res.data
-    console.log(cli);
     if(cli){
         setrestaurant(cli.restaurants);
         

@@ -6,7 +6,7 @@ import { SidebarData } from './SidebarData';
 import * as BiIcons from "react-icons/bi"
 import './Navbar.css'
 import { IconContext } from 'react-icons';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Form, Button  } from 'react-bootstrap';
 import jwt_decode from "jwt-decode";
 
 
@@ -38,9 +38,25 @@ export default function Navbar ()  {
             <FaBars onClick={showSidebar} />
           </Link>
 
+          <div>
+
+          <Form>
+       <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
+       <Form.Control type="text" placeholder="Search" />
+       <Button className="ml-2" variant="secondary" type="submit">
+                     Search
+          </Button>
+         </Form.Group>
+
+  
+  
+         </Form>
+
+          </div>
+
             <div className='d-flex ul_right'>
             
-                <div className="nav-item1">
+                <div className="nav-item1 mt-1">
                <a className="nav-link active" href="#">{user.name}</a>
             </div>
           

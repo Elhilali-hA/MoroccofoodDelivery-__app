@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+// import  isEmail  from 'validator'
 
 const usersSchema = new mongoose.Schema({
     name: {
@@ -11,6 +12,7 @@ const usersSchema = new mongoose.Schema({
       type: String,
       required: [true, 'user must have a email'],
       unique: true,
+      // validate: [isEmail, 'Please enter a valid email'] 
     },
     password: {
       type: String,
@@ -18,6 +20,12 @@ const usersSchema = new mongoose.Schema({
       minlength: 8,
       select: false,
     },
+    // confirm_password: {
+    //   type: String,
+    //   required: [true, 'comfirm your password'],
+    //   minlength: 8,
+    //   select: false,
+    // },
     role: {
       type: String,
       required: false,
@@ -46,6 +54,8 @@ const usersSchema = new mongoose.Schema({
         next();
     }
 });
+
+
 
 usersSchema.virtual("cmd", {
   ref: "cmd",

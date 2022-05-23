@@ -13,7 +13,12 @@ const assigned_cmdSchema = new mongoose.Schema({
     livreur_id:{
         type: mongoose.Schema.ObjectId,
         ref: 'livreur',
-    },
+    }
+    ,
+      created_at: {
+          type: Date,
+          default: Date.now(),
+      }
    
     
   });

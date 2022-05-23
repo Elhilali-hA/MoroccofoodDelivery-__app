@@ -1,27 +1,29 @@
 import React from 'react'
-import Command from '../../components/commandes'
 import Navbar from '../../components/Nav_dashboard'
+import CMD from '../../components/assigned_cmd'
 
 
-const Commandes = () => {
+
+const Assigned_cmd = () => {
   return (
     <>
+
     <Navbar />
 
     <div className='livreur'>
-      <h1>Commandes</h1>
+      <h1>Assigned Commandes</h1>
 
     </div>
 
 
     <div className='col-md-10 text-center float-right'>
 
-     <Command />
+     <CMD />
 
      </div>
-
+      
     </>
   )
 }
 
-export default Commandes
+export default Assigned_cmd

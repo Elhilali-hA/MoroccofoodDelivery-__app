@@ -33,6 +33,12 @@ function Show_user() {
     }
     }
 
+    // const total = collectusers(users)
+
+
+    console.log(users.length)
+    
+
   const deleteData = (id, e) =>{
     
      Swal.fire({
@@ -70,6 +76,10 @@ function Show_user() {
 
   const handleClose = () => setAdd(false);
   const handleAdd = () => setAdd(true);
+
+  const countusers = (user) =>{
+    return users.length
+  }
 
 
 
@@ -154,5 +164,7 @@ const data = users.map((user, index) => {
     </>
   )
 }
+
+
 
 export default Show_user

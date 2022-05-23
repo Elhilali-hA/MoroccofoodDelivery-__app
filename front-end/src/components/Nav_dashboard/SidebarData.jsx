@@ -46,5 +46,11 @@ export const SidebarData = [
     path: '/dashboard/commandes',
     cName: 'nav-text',
     icon : <BiIcons.BiUserCircle/> 
+  },
+  {
+    title: 'commandes & Livreurs',
+    path: '/dashboard/assigned_commandes',
+    cName: 'nav-text',
+    icon : <BiIcons.BiUserCircle/> 
   }
 ];

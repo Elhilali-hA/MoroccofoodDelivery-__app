@@ -10,9 +10,9 @@ class cmdController {
             const cmd = await models.cmd.findById(req.params.id).populate('repas_id').populate('user_id');
             res.status(202).json({
                 status: 'success',
-                data: {
+               
                     cmd,
-                },
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -27,9 +27,9 @@ class cmdController {
             const cmd = await models.cmd.find(filter).populate('repas_id').populate('user_id');
             res.status(202).json({
                 status: 'success',
-                data: {
+                
                     cmd,
-                },
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -42,9 +42,9 @@ class cmdController {
             const newcmd = await models.cmd.create(req.body);
             res.status(202).json({
                 status: 'success',
-                data: {
+               
                      newcmd,
-                },
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -66,9 +66,9 @@ class cmdController {
 
             res.status(202).json({
                 status: 'success',
-                data: {
+              
                     cmd,
-                },
+                
             });
         } catch (err) {
             throw new AppException(err, 400);
@@ -81,9 +81,9 @@ class cmdController {
     
                 res.status(202).json({
                     status: 'success',
-                    data: {
+                    
                         cmd,
-                    },
+                    
                 });
             } catch (err) {
                 throw new AppException(err, 400);
