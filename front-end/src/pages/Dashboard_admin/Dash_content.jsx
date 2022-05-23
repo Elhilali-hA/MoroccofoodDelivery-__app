@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dashboard'
-import Dashboard from '../../components/Nav_content'
+import Navbar from '../../components/Admin/Nav_dashboard'
+import Dashboard from '../../components/Admin/Nav_content'
 
 const Dash_content = () => {
   return (

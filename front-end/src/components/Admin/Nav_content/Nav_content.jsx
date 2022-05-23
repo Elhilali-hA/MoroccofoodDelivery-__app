@@ -3,7 +3,7 @@ import {Card} from 'react-bootstrap'
 import * as FaIcons from 'react-icons/fa'
 import * as MdIcons from 'react-icons/md'
 import * as SiIcons from 'react-icons/si'
-import Store from '../../Store'
+import Store from '../../../Store'
 
  
 

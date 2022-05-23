@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dashboard'
-import Livreur from '../../components/livreur/Show_livreur'
+import Navbar from '../../components/Admin/Nav_dashboard'
+import Livreur from '../../components/Admin/livreur/Show_livreur'
 import './pages.css'
 
 

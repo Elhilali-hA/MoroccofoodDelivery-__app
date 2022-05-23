@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dashboard'
-import Showchef from '../../components/chef_secteur/Show_chefs'
+import Navbar from '../../components/Admin/Nav_dashboard'
+import Showchef from '../../components/Admin/chef_secteur/Show_chefs'
 import './pages.css'
 
 

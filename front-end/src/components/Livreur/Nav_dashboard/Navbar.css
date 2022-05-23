@@ -1,0 +1,115 @@
+.navbar_dash {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(88, 79, 213) 100%);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  nav{
+      width: 15%;
+  }
+
+  #dropdown-basic{
+    width: 60px;
+    height: 40px;
+  }
+  
+  .menu-bars {
+    margin-left: 2rem;
+    font-size: 1rem;
+    background: none;
+  }
+
+  .add-button{
+   width:40px 
+  }
+
+  .add-no{
+    width: 20%;
+    margin: auto;
+    display:flex;
+    flex-direction: column;
+    align-items:center
+  }
+  
+
+  .nav-menu {
+    background-color: #f1f2f4;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+    transition: 350ms;
+    z-index: 1;
+  }
+  
+  .nav-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+  }
+  
+  .nav-text a {
+    text-decoration: none;
+    color: #eee5e5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+  }
+
+  .nav-link{
+    color: black;
+
+  }
+
+  .nav-text a:hover {
+    background-color: #1a83ff;
+  }
+  
+  .nav-menu-items {
+    width: 100%;
+  }
+
+  .ul_right{
+    text-align: center;
+  }
+
+  .ul_dashboard{
+      background-color: #000000;
+      margin: 0;
+      padding:0;
+      min-height: 92vh
+  }
+  
+  .navbar-toggle {
+    background-color: #060b26;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  span {
+    margin-left: 16px;
+  }
+
+  

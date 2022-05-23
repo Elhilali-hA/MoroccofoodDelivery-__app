@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dashboard'
-import Restau from '../../components/Restaurants/Show_restau'
+import Navbar from '../../components/Admin/Nav_dashboard'
+import Restau from '../../components/Admin/Restaurants/Show_restau'
 import './pages.css'
 
 

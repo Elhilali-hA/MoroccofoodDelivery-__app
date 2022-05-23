@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/Admin/Nav_dashboard'
+import Navbar from '../../components/Livreur/Nav_dashboard'
 import CMD from '../../components/Admin/assigned_cmd'
 
 

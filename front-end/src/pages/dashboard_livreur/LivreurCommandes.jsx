@@ -1,6 +1,6 @@
 import React from 'react'
-import Command from '../../components/Admin/commandes'
-import Navbar from '../../components/Admin/Nav_dashboard'
+import Commande from '../../components/Admin/commandes'
+import Navbar from '../../components/Livreur/Nav_dashboard'
 
 
 const Commandes = () => {
@@ -16,7 +16,7 @@ const Commandes = () => {
 
     <div className='col-md-10 text-center float-right'>
 
-     <Command />
+     <Commande />
 
      </div>
 

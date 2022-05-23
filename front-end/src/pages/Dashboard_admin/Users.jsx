@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/Nav_dashboard'
-import Showusers from '../../components/Users/Show_user'
+import Navbar from '../../components/Admin/Nav_dashboard'
+import Showusers from '../../components/Admin/Users/Show_user'
 import './pages.css'
 
 
